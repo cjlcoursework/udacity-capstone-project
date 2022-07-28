@@ -2,6 +2,12 @@
 __pycache__/
 *.py[cod]
 *$py.class
+data/udacity/
+data/temperatures/
+
+.DS_Store/
+.idea/
+*.env
 
 # C extensions
 *.so

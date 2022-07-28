@@ -2,9 +2,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
-data/udacity/
-data/temperatures/
+data/
 
+.DS_Store
 .DS_Store/
 .idea/
 *.env

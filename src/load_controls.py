@@ -32,7 +32,7 @@ def transform_city_codes(line: str):
         return dict(city_code=None, status="FAILED", country="", line=line.strip())
 
 
-def transform_iana_names(line: str):
+def transform_iata_names(line: str):
     try:
         regexp_1 = re.compile(iana_pattern)
         re_match = regexp_1.match(line.strip())
@@ -49,10 +49,10 @@ def transform_iana_names(line: str):
             state = value[0:comma].strip()
         else:
             state = value
-        return dict(iana_code=code,     city_name=state,          state_code=country, status='VALID', line=line.strip())
+        return dict(iata_code=code,     city_name=state,          state_code=country, status='VALID', line=line.strip())
 
     except Exception as e:
-        return dict(iana_code='', city_name='', state_code='',     status='FAILED', line=line.strip())
+        return dict(iata_code='', city_name='', state_code='',     status='FAILED', line=line.strip())
 
 
 def load_state_names(file_name: str, table_name: str, schema: str):
@@ -76,6 +76,6 @@ def load_column_defs(file_name: str, table_name: str, schema: str, func: Callabl
 
 
 if __name__ == "__main__":
-    load_column_defs(file_name='../data/controls/city_codes.txt', table_name='city_codes', schema="controls", func=transform_city_codes)
-    load_column_defs(file_name='../data/controls/iana_names.txt', table_name='iana_names', schema="controls", func=transform_iana_names)
+    load_column_defs(file_name='../data/controls/city_codes.csv', table_name='city_codes', schema="controls", func=transform_city_codes)
+    load_column_defs(file_name='../data/controls/iana_names.csv', table_name='iana_names', schema="controls", func=transform_iata_names)
     load_state_names(file_name='../data/controls/state_names.csv', table_name='state_names', schema='controls')

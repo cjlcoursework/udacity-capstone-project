@@ -11,6 +11,15 @@ SELECT *
 FROM information_schema.columns
 WHERE table_schema = 'public'
 ;
+
+---scope of temperature data
+-- by country
+select country_name, min(year), max(year), count(*) from state_temperatures group by country_name;
+-- by state
+select country_name, state_name, min(year), max(year), count(*) from state_temperatures group by country_name, state_name;
+
+
+
 ---
 --- immigrations:
 --     country_code: (eg. 209 = Mexico)

@@ -76,6 +76,6 @@ def load_column_defs(file_name: str, table_name: str, schema: str, func: Callabl
 
 
 if __name__ == "__main__":
-    load_column_defs(file_name='../data/controls/city_codes.csv', table_name='city_codes', schema="controls", func=transform_city_codes)
-    load_column_defs(file_name='../data/controls/iana_names.csv', table_name='iana_names', schema="controls", func=transform_iata_names)
+    load_column_defs(file_name='../data/controls/sas_countries_raw.csv', table_name='city_codes', schema="controls", func=transform_city_codes)
+    load_column_defs(file_name='../boneyard/iata_names.csv', table_name='iana_names', schema="controls", func=transform_iata_names)
     load_state_names(file_name='../data/controls/state_names.csv', table_name='state_names', schema='controls')

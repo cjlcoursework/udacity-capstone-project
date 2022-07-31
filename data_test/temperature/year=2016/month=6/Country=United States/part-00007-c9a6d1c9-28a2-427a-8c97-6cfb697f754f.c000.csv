@@ -1,0 +1,4 @@
+dt,AverageTemperature,AverageTemperatureUncertainty,State,timestamp
+2012-06-01T00:00:00.000-07:00,20.615,0.344,West Virginia,2012-06-01
+2012-06-01T00:00:00.000-07:00,19.955,0.358,Wisconsin,2012-06-01
+2012-06-01T00:00:00.000-07:00,17.366,0.239,Wyoming,2012-06-01

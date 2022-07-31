@@ -1,0 +1,3 @@
+dt,AverageTemperature,AverageTemperatureUncertainty,State,timestamp
+2012-03-01T00:00:00.000-08:00,20.736,0.223,New South Wales,2012-03-01
+2012-03-01T00:00:00.000-08:00,26.837,0.179,Northern Territory,2012-03-01

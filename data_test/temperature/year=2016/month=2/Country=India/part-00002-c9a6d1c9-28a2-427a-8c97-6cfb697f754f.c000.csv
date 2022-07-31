@@ -1,0 +1,5 @@
+dt,AverageTemperature,AverageTemperatureUncertainty,State,timestamp
+2012-02-01T00:00:00.000-08:00,-6.651,0.392,Jammu And Kashmir,2012-02-01
+2012-02-01T00:00:00.000-08:00,20.764,0.149,Jharkhand,2012-02-01
+2012-02-01T00:00:00.000-08:00,26.246,0.326,Karnataka,2012-02-01
+2012-02-01T00:00:00.000-08:00,27.59,0.204,Kerala,2012-02-01

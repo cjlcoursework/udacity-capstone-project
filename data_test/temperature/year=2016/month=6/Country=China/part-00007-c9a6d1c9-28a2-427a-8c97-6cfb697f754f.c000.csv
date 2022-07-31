@@ -1,0 +1,5 @@
+dt,AverageTemperature,AverageTemperatureUncertainty,State,timestamp
+2012-06-01T00:00:00.000-07:00,19.778,0.406,Xinjiang Uygur,2012-06-01
+2012-06-01T00:00:00.000-07:00,7.05,0.507,Xizang,2012-06-01
+2012-06-01T00:00:00.000-07:00,21.076,0.444,Yunnan,2012-06-01
+2012-06-01T00:00:00.000-07:00,24.02,0.509,Zhejiang,2012-06-01

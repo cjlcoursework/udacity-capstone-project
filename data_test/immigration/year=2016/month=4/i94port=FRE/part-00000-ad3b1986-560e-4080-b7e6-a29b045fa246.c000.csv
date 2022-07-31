@@ -1,0 +1,4 @@
+cicid,i94yr,i94mon,i94cit,i94res,arrdate,i94mode,i94addr,depdate,i94bir,i94visa,count,dtadfile,visapost,occup,entdepa,entdepd,entdepu,matflag,biryear,dtaddto,gender,insnum,airline,admnum,fltno,visatype
+6076312.0,2016.0,4.0,582.0,582.0,20555.0,9.0,CA,,39.0,2.0,1.0,20160829,,,P,,,,1977.0,04102017,F,LMATTE,,1.3022610529E10,,CP
+6076313.0,2016.0,4.0,582.0,582.0,20555.0,9.0,CA,,36.0,2.0,1.0,20160829,,,P,,,,1980.0,04102017,M,LMATTE,,4.2002927233E10,,CP
+6076314.0,2016.0,4.0,582.0,582.0,20574.0,9.0,CA,,40.0,2.0,1.0,20160829,,,P,,,,1976.0,04292017,F,LAMATT,,4.2002934633E10,,CP

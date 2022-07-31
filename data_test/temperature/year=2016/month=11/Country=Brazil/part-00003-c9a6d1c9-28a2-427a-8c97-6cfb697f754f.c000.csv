@@ -1,0 +1,4 @@
+dt,AverageTemperature,AverageTemperatureUncertainty,State,timestamp
+2012-11-01T00:00:00.000-07:00,26.968000000000004,0.329,Mato Grosso,2012-11-01
+2012-11-01T00:00:00.000-07:00,26.557,0.409,Mato Grosso Do Sul,2012-11-01
+2012-11-01T00:00:00.000-07:00,23.677,0.331,Minas Gerais,2012-11-01

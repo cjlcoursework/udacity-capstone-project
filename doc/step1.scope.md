@@ -10,7 +10,7 @@ I spent some time looking at other datasets, and my thinking was that I wanted t
 I chose the Udacity Provided Project
 I used some Udacity provided data, but added some additional files to help 
 
-
+---
 
 #### Raw data
 Here are the raw datasets I am using:
@@ -28,11 +28,13 @@ Here are the raw datasets I am using:
 
 
 ---
-The pivotal data is i94immigrations (immigration)
-The GlobalLandTemperaturesByState (temperature) adds temperature data 
-Other data is used for augmenting the immigration and temperature data
 
-#### Immigration data
+- [ ] The pivotal data is i94immigrations (immigration)
+- [ ] The GlobalLandTemperaturesByState (temperature) adds temperature data 
+- [ ] Other data is used for augmenting the immigration and temperature data
+
+
+#### <u>Immigration data</u>
 The Department of Homeland Security (DHS) issues Form I-94, Arrival/Departure Record, to aliens who are:
 - Admitted to the U.S.;
 - Adjusting status while in the U.S.; or
@@ -40,7 +42,7 @@ The Department of Homeland Security (DHS) issues Form I-94, Arrival/Departure Re
   This dataset is provided by Uadcity from the International Trade Admnistration `the https://www.trade.gov/national-travel-and-tourism-office`
 
 
-#### temperature data
+#### <u>temperature data</u>
 There are a range of organizations that collate climate trends data. The three most cited land and ocean temperature data sets are NOAA’s MLOST, NASA’s GISTEMP and the UK’s HadCrut.
 Kaggle has repackaged the data put together by the Berkeley Earth, which is affiliated with Lawrence Berkeley National Laboratory.
 The Berkeley Earth Surface Temperature Study combines 1.6 billion temperature reports from 16 pre-existing archives.
@@ -49,7 +51,6 @@ It is nicely packaged and allows for slicing into interesting subsets (for examp
 
 
 ---
-Explain what end use cases you'd like to prepare the data for (e.g., analytics table, app back-end, source-of-truth database, etc.)
 
 ### Usage and Scope
 

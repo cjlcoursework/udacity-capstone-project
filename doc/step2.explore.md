@@ -48,9 +48,11 @@
 * [immigration cleanup notes](step2.labnotes1.md)
 
 * [defect cleanup details](step2.labnotes2.md)
+
+<br/>
+<br/>
+
 ---
-<br/>
-<br/>
 
 > Set the SCOPE of the solution based on the data
 

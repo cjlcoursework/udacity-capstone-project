@@ -39,9 +39,9 @@
 
 > Document steps necessary to clean the data  
 
-* [immigration cleanup notes](doc/step2.labnotes1.md)
+* [immigration cleanup notes](step2.labnotes1.md)
 
-* [defect cleanup details](doc/step2.labnotes2.md)
+* [defect cleanup details](step2.labnotes2.md)
 ---
 
 > Set the SCOPE of the solution based on the data

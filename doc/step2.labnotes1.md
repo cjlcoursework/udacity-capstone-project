@@ -271,15 +271,15 @@ WHERE rownumber = 1;
 #### final results
 
 - left joining returns all records == 3,096,313
-- `controls.sas_countries` -- this lets in i94cit data that we can't match to a "good" sas index (e.g. 996 =  'No Country Code (996)')
-- `controls.airport_codes` -- this lets in airport codes that we cannot map to countries in the airport data
+- `controls.sas_countries` -- joining this data filters out `i94cit` data that we can't match to a "good" sas index (e.g. 996 =  'No Country Code (996)')
+- `controls.airport_codes` -- joining this data filters out airport codes that we cannot map to countries in the airport data
   - these are generally tiny municipal airports
 
 > so in the immigration data we are filtering out 'bad' airports and countries
 >     leaving us 2,242,026 out of 3,096,313 records == 72.4% of the data that we can map to country data
 
 
-but we deliberately filter out some countries leaving only 346,627 immigrations to the US from that we can map to temperature data
+<b>BUT</b> we deliberately filter out some countries leaving only 346,627 immigrations to the US from that we can map to temperature data
 -     * US arrivals
 -      * origins available in the temperatures data ( 'AU', 'BR',  'CA', 'CN','IN', 'RU',   'US' )
 

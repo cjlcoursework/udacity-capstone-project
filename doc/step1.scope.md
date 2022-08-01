@@ -39,6 +39,7 @@ Here are the raw datasets I am using:
 
 
 ---
+<br/>
 
 - [ ] The pivotal data is i94immigrations (immigration)
 - [ ] The GlobalLandTemperaturesByState (temperature) adds temperature data 

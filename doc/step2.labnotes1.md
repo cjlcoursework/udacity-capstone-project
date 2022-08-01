@@ -61,11 +61,13 @@ where S.sas_code is null
 
 ---
 
-### Outcome `87% completeness`
+##### Outcome `87% completeness`
 
 - There are 386,189 records in immigration that do not have a corresponding entry in the sas index (I94_SAS_Labels_Descriptions.SAS)
   - can't really do much about missing sas index data, so (1- 386,189/3,096,313) == `87% completeness`
   - not all of these are US countries, so we are better than 87% once we remove the non-US destinations
+
+
 
 
 

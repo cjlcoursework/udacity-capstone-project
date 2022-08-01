@@ -15,7 +15,7 @@ def load_processed_data_to_postgres():
         .getOrCreate()
 
     # -- temperature --
-    temp_df = process_temperature_data_by_state(
+    temp_df, temp_files_df, temp_logs_df = process_temperature_data_by_state(
         spark=spark,
         df=get_temperature_data_by_state(spark=spark,
                                          format="csv",
@@ -23,9 +23,11 @@ def load_processed_data_to_postgres():
     )
 
     write_to_postgres(temp_df, "temperature")
+    write_to_postgres(temp_files_df, "controls.load_files", "append")
+    write_to_postgres(temp_logs_df, "controls.load_times", "append")
 
     # -- immigration --
-    immigration_df = process_immigration_data(
+    immigration_df, immigration_files_df, immigration_logs_df = process_immigration_data(
         spark=spark,
         df = get_immigration_data(spark=spark,
                                 format="parquet",
@@ -40,6 +42,8 @@ def load_processed_data_to_postgres():
     )
 
     write_to_postgres(airport_df, "airports")
+    write_to_postgres(immigration_files_df, "controls.load_files", "append")
+    write_to_postgres(immigration_logs_df, "controls.load_times", "append")
 
 
 if __name__ == "__main__":

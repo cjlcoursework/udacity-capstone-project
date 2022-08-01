@@ -17,6 +17,13 @@ def create_files_log(df: DataFrame, table_name: str) -> DataFrame:
     return files_df
 
 
+def create_load_log(file_df: DataFrame,  reason: str = "initial") -> DataFrame:
+    load_df = file_df.select("file_id").distinct() \
+        .withColumn("current_timestamp",current_timestamp()) \
+        .withColumn("reason", F.lit(reason))
+    return load_df
+
+
 def write_to_postgres(df: DataFrame, table_name: str, mode: str = "overwrite"):
     df.write.format("jdbc").mode(mode) \
         .option("url", "jdbc:postgresql://localhost:5432/postgres") \

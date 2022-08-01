@@ -3,7 +3,8 @@ from pyspark.sql import functions as F
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
-from src.common.common import create_files_log, write_to_postgres
+from src.common.common import create_files_log, write_to_postgres, create_load_log
+from src.common.config import PYSPARK_EXTENDED_JARS
 from src.common.ingest_control_data import get_sas_countries, get_country_codes
 
 LOAD_CONTROLS_POSTGRES = False
@@ -31,7 +32,6 @@ COUNTRIES_WITH_TEMPERATURE_DATA = """( 'AUSTRALIA',
     'UNITED STATES' )"""
 
 # --------------------  Global Spark Session ---------------------
-from config import PYSPARK_EXTENDED_JARS
 
 
 def get_immigration_data(spark: SparkSession, format: str, path: str) -> DataFrame:
@@ -50,17 +50,22 @@ def get_immigration_data(spark: SparkSession, format: str, path: str) -> DataFra
     return df
 
 
-def process_immigration_data(spark: SparkSession, df: DataFrame) -> (DataFrame, DataFrame):
+def process_immigration_data(spark: SparkSession, df: DataFrame) -> (DataFrame, DataFrame, DataFrame):
     df.createOrReplaceTempView("next_immigrations")
 
-    contry_ndx_df = get_sas_countries(spark=spark)
-    contry_ndx_df.createOrReplaceTempView("sas_countries")
+    country_ndx_df = get_sas_countries(spark=spark)
+    country_ndx_df.createOrReplaceTempView("sas_countries")
 
-    airports_df = get_airport_data(spark=spark)
+    airports_df = process_airport_data(spark=spark, df=get_airport_data(spark=spark))
     airports_df.createOrReplaceTempView("airport_codes")
 
     files_df = create_files_log(df=df, table_name="immigration")
     files_df.createOrReplaceTempView("files")
+
+    logs_df = create_load_log(file_df=files_df)
+    logs_df.createOrReplaceTempView("logs")
+
+    airports_df.show(truncate=False)
 
     # extract columns to create songs table
     #  exclude immigration countries with no sas code -- none or very few records
@@ -70,7 +75,7 @@ def process_immigration_data(spark: SparkSession, df: DataFrame) -> (DataFrame, 
     # the distinct might not be performant
     # this join causes a fan-out, so dedup using partition on the cicid key
     # todo - improve performance by getting rid of the de-dyp logic? (find the fan-out)
-    temps_df = spark.sql(f"""
+    migration_df = spark.sql(f"""
     WITH DUPS as (SELECT row_number() OVER (PARTITION BY I.cicid ORDER BY A.city_name) as rownumber,
              I.cicid,
              I.i94yr,
@@ -101,8 +106,8 @@ def process_immigration_data(spark: SparkSession, df: DataFrame) -> (DataFrame, 
              I.fltno,
              I.visatype,
              I.birth_year,
-             I.year,
-             I.month,
+             I.i94yr as year,
+             I.i94mon as month,
              L.file_id,
              upper(S.canon_country_name)                                   as origin_country_name,
              upper(S.country_code2)                                        as origin_country_code,
@@ -121,7 +126,7 @@ def process_immigration_data(spark: SparkSession, df: DataFrame) -> (DataFrame, 
     FROM DUPS 
     WHERE rownumber = 1 """)
 
-    return temps_df, files_df
+    return migration_df, files_df, logs_df
 
 
 def get_temperature_data_by_state(spark: SparkSession, format: str, path: str, start_year: int = 2000, shift_years: int = 4) -> DataFrame:
@@ -130,23 +135,30 @@ def get_temperature_data_by_state(spark: SparkSession, format: str, path: str, s
         .option("inferSchema", "true") \
         .load(path)
 
-    df = df.filter(f"year > {start_year}") \
-        .withColumn("year", df.year + shift_years) \
+    df = df \
         .withColumn("timestamp", to_date(col("dt"), "yyyy-MM-dd")) \
         .withColumn("input_file", input_file_name()) \
         .withColumnRenamed("State", "state_name") \
         .withColumnRenamed("Country", "country_name") \
         .withColumnRenamed("AverageTemperature", "average_temp") \
         .withColumnRenamed("AverageTemperatureUncertainty", "average_temp_uncertainty") \
-        .withColumn("canon_country_name", F.upper("country_name"))
+        .withColumn("canon_country_name", F.upper("country_name"))\
+        .withColumn("year", F.year("timestamp") + shift_years)\
+        .withColumn("month", F.month("timestamp")) \
+        .withColumn("original_year", F.year("timestamp")) \
+        .filter(f"year > {start_year}")
+
     return df
 
 
-def process_temperature_data_by_state(spark: SparkSession, df: DataFrame):
+def process_temperature_data_by_state(spark: SparkSession, df: DataFrame) -> (DataFrame, DataFrame, DataFrame):
     df.createOrReplaceTempView("temperatures")
 
     files_df = create_files_log(df=df, table_name="temperature")
     files_df.createOrReplaceTempView("files")
+
+    logs_df = create_load_log(file_df=files_df)
+    logs_df.createOrReplaceTempView("logs")
 
     temps_df = spark.sql(f"""
     SELECT 
@@ -163,6 +175,8 @@ def process_temperature_data_by_state(spark: SparkSession, df: DataFrame):
     FROM temperatures T 
      join files L on L.input_file = T.input_file
      """)
+
+    return temps_df, files_df, logs_df
 
 
 def get_airport_data(spark: SparkSession) -> DataFrame:

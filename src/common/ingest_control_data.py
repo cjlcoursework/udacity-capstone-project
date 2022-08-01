@@ -3,10 +3,10 @@ from pyspark.sql import functions as F
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
-from config import PYSPARK_EXTENDED_JARS
 from src.common.common import write_to_postgres
 
 # TODO - create a database of raw files and locations - because we are not saving in git
+from src.common.config import PYSPARK_EXTENDED_JARS
 
 
 def get_sas_countries(spark: SparkSession, raw: bool = False) -> DataFrame:
@@ -51,7 +51,6 @@ def get_country_codes(spark: SparkSession) -> DataFrame:
         .withColumn("canon_country_code3", F.upper('country_code3'))
 
 
-
 def load_cities(spark: SparkSession, format: str, path: str, table_name: str):
     df = spark.read.format(format) \
         .option("header", "True") \
@@ -85,7 +84,7 @@ if __name__ == "__main__":
         .getOrCreate()
 
     # ---control tables -- insert to postgres for inspection ONLY - we are not really using the postgres tables
-    write_to_postgres(get_sas_countries(spark), table_name="controls.sas_countries")
-    write_to_postgres(get_sas_countries(spark, True), table_name="controls.sas_countries_raw")
-    write_to_postgres(get_country_codes(spark), table_name="controls.country_codes")
-    write_to_postgres(get_raw_sas_index(spark), table_name="controls.sas_index")
+    write_to_postgres(get_sas_countries(spark), table_name="commons.sas_countries")
+    write_to_postgres(get_sas_countries(spark, True), table_name="commons.sas_countries_raw")
+    write_to_postgres(get_country_codes(spark), table_name="commons.country_codes")
+    write_to_postgres(get_raw_sas_index(spark), table_name="commons.sas_index")

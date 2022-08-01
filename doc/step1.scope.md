@@ -5,12 +5,24 @@
 
 ---
 
+
+<br/>
+<br/>
+<br/>
+
+
 ### Gather the data
 I spent some time looking at other datasets, and my thinking was that I wanted to spend more time on engineering the data rather than experimenting with different datasets. 
 I chose the Udacity Provided Project
 I used some Udacity provided data, but added some additional files to help 
 
 ---
+
+
+<br/>
+<br/>
+<br/>
+
 
 #### Raw data
 Here are the raw datasets I am using:
@@ -34,6 +46,12 @@ Here are the raw datasets I am using:
 - [ ] Other data is used for augmenting the immigration and temperature data
 
 
+
+<br/>
+<br/>
+<br/>
+
+
 #### <u>Describe immigration data</u>
 The Department of Homeland Security (DHS) issues Form I-94, Arrival/Departure Record, to aliens who are:
 - Admitted to the U.S.;
@@ -48,6 +66,11 @@ Kaggle has repackaged the data put together by the Berkeley Earth, which is affi
 The Berkeley Earth Surface Temperature Study combines 1.6 billion temperature reports from 16 pre-existing archives.
 It is nicely packaged and allows for slicing into interesting subsets (for example by country).
 
+
+
+<br/>
+<br/>
+<br/>
 
 
 ---

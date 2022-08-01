@@ -2,7 +2,6 @@
 - Explore the data to identify data quality issues, like missing values, duplicate data, etc.
 - Document steps necessary to clean the data
 
-<br/>
 
 ---
 

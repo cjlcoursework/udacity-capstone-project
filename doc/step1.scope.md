@@ -8,7 +8,7 @@
 
 <br/>
 <br/>
-<br/>
+
 
 
 ### Gather the data
@@ -19,7 +19,6 @@ I used some Udacity provided data, but added some additional files to help
 ---
 
 
-<br/>
 <br/>
 <br/>
 
@@ -47,7 +46,6 @@ Here are the raw datasets I am using:
 
 
 
-<br/>
 <br/>
 <br/>
 

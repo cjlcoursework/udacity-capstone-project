@@ -34,7 +34,7 @@ Here are the raw datasets I am using:
 - [ ] Other data is used for augmenting the immigration and temperature data
 
 
-#### <u>Immigration data</u>
+#### <u>Describe immigration data</u>
 The Department of Homeland Security (DHS) issues Form I-94, Arrival/Departure Record, to aliens who are:
 - Admitted to the U.S.;
 - Adjusting status while in the U.S.; or
@@ -42,7 +42,7 @@ The Department of Homeland Security (DHS) issues Form I-94, Arrival/Departure Re
   This dataset is provided by Uadcity from the International Trade Admnistration `the https://www.trade.gov/national-travel-and-tourism-office`
 
 
-#### <u>temperature data</u>
+#### <u>Describe temperature data</u>
 There are a range of organizations that collate climate trends data. The three most cited land and ocean temperature data sets are NOAA’s MLOST, NASA’s GISTEMP and the UK’s HadCrut.
 Kaggle has repackaged the data put together by the Berkeley Earth, which is affiliated with Lawrence Berkeley National Laboratory.
 The Berkeley Earth Surface Temperature Study combines 1.6 billion temperature reports from 16 pre-existing archives.

@@ -16,8 +16,9 @@
 * documentation:   
   * [data exploration](doc/step2.explore.md)
   
-  * [cleanup notes](doc/step2.labnotes2.md)
+  * [immigration cleanup notes](doc/step2.labnotes1.md)
 
+  * [defect cleanup details](doc/step2.labnotes2.md)
 ---
 
 ### Step 3: Define the Data Model

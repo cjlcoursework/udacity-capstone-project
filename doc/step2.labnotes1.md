@@ -137,8 +137,8 @@ where A.name is null;`
 
 ##### Summary
 - 2,242,026 immigration records can be matched to valid countries and airports = 72% completeness
-- But we then deliberately scope down to US arrivals from countries that are found in the temperature data
-- leaving only 346,627 effective records which is 11% of the total immigration data
+- But when we deliberately scope down to US arrivals from countries that are found in the temperature data
+  - we are left with only 346,627 effective records - which is 11% of the total immigration data
 
 ##### Calculations
 

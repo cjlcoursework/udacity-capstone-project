@@ -9,6 +9,7 @@
 2. Transform and query to determine completeness, data quality and 
 3. Bring in some additional datasets to help fill out geo-location information
 
+---
 
 > Create Postgres tables from raw and query, and bring in more data to fill in the gaps
 
@@ -23,6 +24,7 @@
 | state_names.csv                          | not used yet                                 |
 | country_codes.csv                        | augment the airport information              |
 
+---
 
 > Create some light transformations
 
@@ -33,6 +35,7 @@
 | airport-codes.csv       | airport-codes_csv.csv with some 'missing' airports                 |
 
 
+---
 
 > Document steps necessary to clean the data  
 

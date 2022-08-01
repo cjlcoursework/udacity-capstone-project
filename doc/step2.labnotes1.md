@@ -117,7 +117,14 @@ left join controls.airport_codes A on A.name = R.name
 where A.name is null;`
 == 64 distinct airport codes that were filtered out
 
----
+
+<br/>
+<br/>
+<br/>
+
+
+
+
 
 -------------------------------------------------------------
 > FINAL IMMIGRATION DATASET 

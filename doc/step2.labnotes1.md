@@ -162,9 +162,13 @@ where iso_country in ( 'AU',
 = 2,028,371  ---  we only want US arrivals
 
 
-#### final talley
+<b/>
+
+#### calculation details
 -    (the joins cause some fan-out so I am windowing over cicid to get just the distinct records)
 -    select DISTINCT will not work and would be too slow
+
+<b/>
 
 #### setting filters off, but leaving joins on returns 2,242,026 records
 ```sql
@@ -220,6 +224,8 @@ SELECT count(*)
 FROM DUPS
 WHERE rownumber = 1;
 ```
+<b/>
+<b/>
 
 - without the country filters we have 2,242,026 records before filtering arrival and origin countries the country filters
 -- just the joins are in play here
@@ -279,8 +285,13 @@ SELECT count(*)
 FROM DUPS
 WHERE rownumber = 1;
 ```
+<b/>
+<b/>
+
 ---
-#### final results
+
+> final results
+
 - in the immigration data we are filtering out 'bad' airports and countries leaving us 2,242,026 out of 3,096,313 records == 72.4% of the data that we can map to country data
   <b>BUT</b> we deliberately filter out some countries leaving only 346,627 immigrations to the US from that we can map to temperature data
   - US arrivals

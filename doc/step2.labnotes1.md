@@ -154,7 +154,7 @@ where iso_country in ( 'AU',
 -    (the joins cause some fan-out so I am windowing over cicid to get just the distinct records)
 -    select DISTINCT will not work and would be too slow
 
-#### filters off, joins on returns 2,242,026 records
+#### setting filters off, but leaving joins on returns 2,242,026 records
 ```sql
 WITH DUPS as (SELECT row_number() OVER (PARTITION BY I.cicid ORDER BY A.city_name) as rownumber,
 I.cicid,
@@ -212,7 +212,7 @@ WHERE rownumber = 1;
 - without the country filters we have 2,242,026 records before filtering arrival and origin countries the country filters
 -- just the joins are in play here
 
-#### filters off AND joins aff as well (left join instead of join) returns all records == 3,096,313
+#### Setting both filters AND joins aff (left join instead of join) returns all records == 3,096,313
 
 ```sql
 WITH DUPS as (SELECT row_number() OVER (PARTITION BY I.cicid ORDER BY A.city_name) as rownumber,

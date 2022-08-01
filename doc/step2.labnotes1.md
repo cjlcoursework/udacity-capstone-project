@@ -68,7 +68,7 @@ where S.sas_code is null
   - not all of these are US countries, so we are better than 87% once we remove the non-US destinations
 
 
-
+---
 
 
 -------------------------------------------------------------
@@ -117,10 +117,10 @@ left join controls.airport_codes A on A.name = R.name
 where A.name is null;`
 == 64 distinct airport codes that were filtered out
 
-
+---
 
 -------------------------------------------------------------
-> final 
+> FINAL IMMIGRATION DATASET 
 -------------------------------------------------------------
 
 ##### Summary

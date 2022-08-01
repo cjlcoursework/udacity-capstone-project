@@ -2,6 +2,12 @@
 - what arrival geos (countries, states, cities)  have all temperature data for any given origin
 - what origin geos (country) have all temperature data for any given destination
 
+<br/>
+<br/>
+<br/>
+
+
+
 -------------------------------------------------------------
 > DETERMINE THE EFFECT OF FILTERING ON IMMIGRATIONS DATA
 -------------------------------------------------------------
@@ -68,7 +74,12 @@ where S.sas_code is null
   - not all of these are US countries, so we are better than 87% once we remove the non-US destinations
 
 
----
+<br/>
+<br/>
+<br/>
+
+
+
 
 
 -------------------------------------------------------------

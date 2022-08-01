@@ -2,6 +2,8 @@
 - Explore the data to identify data quality issues, like missing values, duplicate data, etc.
 - Document steps necessary to clean the data
 
+<br/>
+
 ---
 
 #### Approach
@@ -10,6 +12,8 @@
 3. Bring in some additional datasets to help fill out geo-location information
 
 ---
+<br/>
+
 
 > Create Postgres tables from raw and query, and bring in more data to fill in the gaps
 
@@ -34,6 +38,8 @@
 | sas_countries.csv       | join sas_countries_raw.csv and country_codes.csv on country_name   |
 | airport-codes.csv       | airport-codes_csv.csv with some 'missing' airports                 |
 
+<br/>
+<br/>
 
 ---
 
@@ -43,6 +49,8 @@
 
 * [defect cleanup details](step2.labnotes2.md)
 ---
+<br/>
+<br/>
 
 > Set the SCOPE of the solution based on the data
 

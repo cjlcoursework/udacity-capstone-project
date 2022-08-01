@@ -274,12 +274,12 @@ WHERE rownumber = 1;
   - US arrivals
   - origins available in the temperatures data ( 'AU', 'BR',  'CA', 'CN','IN', 'RU',   'US' )
 
-| filter                        | effect                                                                                                                                       |
-|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| no filter                     | left joining returns all records == 3,096,313                                                                                                |
-| JOIN `controls.sas_countries` | joining this data filters out `i94cit` data that we can't match to a "good" sas index (e.g. 996 =  'No Country Code (996)')                  |
-| JOIN `controls.airport_codes` | joining this data filters out airport codes that we cannot map to countries in the airport data- these are generally tiny municipal airports |
-| where/filter clause           | we deliberately select only US arrivals and origins available in the temperatures data ( 'AU', 'BR',  'CA', 'CN','IN', 'RU',   'US' )                                                      |
+| filter                               | effect                                                                                                                                       |
+|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| no filter                            | left joining returns all records == 3,096,313                                                                                                |
+| JOIN `controls.sas_countries`        | joining this data filters out `i94cit` data that we can't match to a "good" sas index (e.g. 996 =  'No Country Code (996)')                  |
+| JOIN `controls.airport_codes`        | joining this data filters out airport codes that we cannot map to countries in the airport data- these are generally tiny municipal airports |
+| where/filter clause                  | we deliberately select only US arrivals and origins available in the temperatures data ( 'AU', 'BR',  'CA', 'CN','IN', 'RU',   'US' )                                                      |
 
 ##### final logic
 

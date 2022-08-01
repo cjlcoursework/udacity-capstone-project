@@ -70,8 +70,10 @@
 ---
 
 - the sas dates provided don't make sense to me -- we should be able to get to a date using EPOCH + sas_date in seconds  == DATE
+  - `depdate` does not look like a real sas date (?)
+  - `arrdate` ddes not look like a real sas date
+  - we are left with `i94yr` and `i94mon` (year and month) for the time axis
 
-- The <u>time axis</u> is at the <u>year - month level</u>, because it's not clear that we could drill any deeper given the sas dates
 
 
 

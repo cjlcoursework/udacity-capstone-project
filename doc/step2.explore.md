@@ -64,13 +64,14 @@
 ---
 
 - The granularity is at the <u>country</u> level, because
-    - the origin data is only at the country level
-    - the arrival data could be down to the city level, but enriching and conforming both datasets to the city or state level would require a lot of additional work - so we leave this as an improvement.
+    - the `i94cit` column is only at the country level
+    - the `i94port` arrival data could be down to the city level, but enriching and conforming both datasets to the city or state level would require a lot of additional work - so we leave this as an improvement.
 
 ---
 
+- the sas dates provided don't make sense to me -- we should be able to get to a date using EPOCH + sas_date in seconds  == DATE
+
 - The <u>time axis</u> is at the <u>year - month level</u>, because it's not clear that we could drill any deeper given the sas dates
 
-- the sas dates provided don't make sense to me -- we should be able to get to a date using EPOCH + sas_date in seconds  == DATE
 
 

@@ -1,4 +1,13 @@
 
+### Data Pipeline Capstone
+
+* [terms](doc/terms.md)
+
+* [data dictionary](doc/data_dictionary.md)
+
+---
+
+
 ### Step 1: Scope the Project and Gather Data
 - Identify and gather the data you'll be using for your project (at least two sources and more than 1 million rows). See Project Resources for ideas of what data you can use.
 - Explain what end use cases you'd like to prepare the data for (e.g., analytics table, app back-end, source-of-truth database, etc.)

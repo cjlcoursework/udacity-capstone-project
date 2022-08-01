@@ -1,4 +1,3 @@
----
 
 ### Step 1: Scope the Project and Gather Data
 - Identify and gather the data you'll be using for your project (at least two sources and more than 1 million rows). See Project Resources for ideas of what data you can use.

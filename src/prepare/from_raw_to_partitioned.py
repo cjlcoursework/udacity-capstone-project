@@ -1,6 +1,6 @@
 from pyspark.sql.functions import *
 
-from src.common.ingest_core_data import get_temperature_data_by_state, get_immigration_data
+from src.common.ingest_core_data import get_temperature_data, get_immigration_data
 
 
 def write_immigrations_to_partitioned(df: DataFrame):
@@ -13,7 +13,7 @@ def write_immigrations_to_partitioned(df: DataFrame):
 def write_current_temperatures_to_partitioned(df: DataFrame):
     df.filter("year > 2000") \
         .withColumn("year", df.year + 4) \
-        .write.partitionBy("year", "month", "Country") \
+        .write.partitionBy("year", "month", "country_name") \
         .mode("overwrite") \
         .option("header", "True") \
         .csv("../../data/prepdata/temperature")
@@ -29,9 +29,9 @@ def load_core_data():
     data_path = '../../data/rawdata'
 
     # --- temperature ----
-    temp_df = get_temperature_data_by_state(spark=spark,
-                                            format="csv",
-                                            path=f'{data_path}/temperatures/GlobalLandTemperaturesByState.csv')
+    temp_df = get_temperature_data(spark=spark,
+                                   format="csv",
+                                   path=f'{data_path}/temperatures/GlobalLandTemperaturesByState.csv')
 
     write_current_temperatures_to_partitioned(temp_df)
 

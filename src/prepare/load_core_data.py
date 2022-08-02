@@ -1,7 +1,7 @@
 from src.common.common import write_to_postgres
 from src.common.config import PYSPARK_EXTENDED_JARS
-from src.common.ingest_core_data import get_temperature_data_by_state, process_temperature_data_by_state, \
-    process_immigration_data, get_immigration_data, get_airport_data, process_airport_data
+from src.common.ingest_core_data import process_temperature_data, get_temperature_data, \
+    get_immigration_data, process_airport_data, get_airport_data, process_immigration_data
 
 
 def load_processed_data_to_postgres():
@@ -15,14 +15,14 @@ def load_processed_data_to_postgres():
         .getOrCreate()
 
     # -- temperature --
-    temp_df, temp_files_df, temp_logs_df = process_temperature_data_by_state(
+    temp_df, temp_files_df, temp_logs_df = process_temperature_data(
         spark=spark,
-        df=get_temperature_data_by_state(spark=spark,
-                                         format="csv",
-                                         path=f'{data_path}/temperatures/GlobalLandTemperaturesByState.csv')
+        df=get_temperature_data(spark=spark,
+                                format="csv",
+                                path=f'{data_path}/temperatures/GlobalLandTemperaturesByState.csv')
     )
 
-    write_to_postgres(temp_df, "temperature")
+    write_to_postgres(temp_df, "temperature_raw")
     write_to_postgres(temp_files_df, "controls.load_files", "append")
     write_to_postgres(temp_logs_df, "controls.load_times", "append")
 

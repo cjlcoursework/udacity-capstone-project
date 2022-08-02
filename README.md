@@ -49,9 +49,9 @@
 
 
 * documentation:
-  - [the data pipeline](doc/step4.pipeline.md)
-
   - [architecture](doc/step4.architecture.md)
+
+  - [the data pipeline](doc/step4.pipeline.md)
 
   - [base query](doc/step4.proof-of-concept.md)
 

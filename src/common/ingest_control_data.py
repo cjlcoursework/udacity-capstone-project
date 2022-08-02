@@ -34,6 +34,7 @@ def get_raw_sas_index(spark: SparkSession) -> DataFrame:
 
     return df
 
+
 def get_country_codes(spark: SparkSession) -> DataFrame:
     path = '../../data/rawdata/controls/country_codes.csv'
 
@@ -84,7 +85,7 @@ if __name__ == "__main__":
         .getOrCreate()
 
     # ---control tables -- insert to postgres for inspection ONLY - we are not really using the postgres tables
-    write_to_postgres(get_sas_countries(spark), table_name="commons.sas_countries")
-    write_to_postgres(get_sas_countries(spark, True), table_name="commons.sas_countries_raw")
-    write_to_postgres(get_country_codes(spark), table_name="commons.country_codes")
-    write_to_postgres(get_raw_sas_index(spark), table_name="commons.sas_index")
+    write_to_postgres(get_sas_countries(spark), table_name="common.sas_countries")
+    write_to_postgres(get_sas_countries(spark, True), table_name="common.sas_countries_raw")
+    write_to_postgres(get_country_codes(spark), table_name="common.country_codes")
+    write_to_postgres(get_raw_sas_index(spark), table_name="common.sas_index")

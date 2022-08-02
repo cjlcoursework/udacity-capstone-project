@@ -3,19 +3,33 @@
 - Identify and gather the data you'll be using for your project (at least two sources and more than 1 million rows)
 - Explain what end use cases you'd like to prepare the data for (e.g., analytics table, app back-end, source-of-truth database, etc.)
 
+
 ---
 
+- [ ] The pivotal data is i94immigrations (immigration)
+- [ ] The GlobalLandTemperaturesByState (temperature) adds temperature data
+- [ ] Other data is used for augmenting the immigration and temperature data
+
 
 <br/>
-<br/>
-
 
 
 ### Gather the data
-I spent some time looking at other datasets, and my thinking was that I wanted to spend more time on engineering the data rather than experimenting with different datasets. 
-I chose the Udacity Provided Project
-I used some Udacity provided data, but added some additional files to help 
+1. [ ] I spent some time looking at other datasets, and my thinking was that 
+2. [ ] I wanted to spend more time on engineering the data rather than experimenting with different datasets. 
+3. [ ] I chose the Udacity Provided Project
+4. [ ] I used some Udacity provided data, but added some additional files to help
 
+<br/>
+
+### Explain what end use cases you'd like to prepare the data
+5. [ ] I am approaching he end-use case as a user-facing research dataset 
+6. [ ] In a Data Lake on AWS or Databricks
+7. [ ] The audience for this dataset would be data analysts
+
+
+
+ 
 ---
 
 
@@ -41,11 +55,7 @@ Here are the raw datasets I am using:
 ---
 <br/>
 
-- [ ] The pivotal data is i94immigrations (immigration)
-- [ ] The GlobalLandTemperaturesByState (temperature) adds temperature data 
-- [ ] Other data is used for augmenting the immigration and temperature data
 
-<br/>
 
 #### <u>Describe immigration data</u>
 The Department of Homeland Security (DHS) issues Form I-94, Arrival/Departure Record, to aliens who are:
@@ -63,7 +73,6 @@ It is nicely packaged and allows for slicing into interesting subsets (for examp
 
 
 
-<br/>
 <br/>
 <br/>
 

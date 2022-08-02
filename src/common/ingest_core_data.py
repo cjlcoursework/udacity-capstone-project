@@ -41,7 +41,9 @@ def get_immigration_data(spark: SparkSession, format: str, path: str) -> DataFra
         .load(path)
 
     df = df \
-        .withColumnRenamed("_c0", "id") \
+        .withColumnRenamed("_c0", "id")\
+        .withColumn("year", df.i94yr)\
+        .withColumn("month", df.i94mon) \
         .withColumn("input_file", input_file_name()) \
         .withColumn("birth_year", regexp_extract('biryear', r'\d*', 0).cast(IntegerType())) \
         .withColumn("birth_year", regexp_extract('biryear', r'\d*', 0).cast(IntegerType())) \
@@ -64,8 +66,6 @@ def process_immigration_data(spark: SparkSession, df: DataFrame) -> (DataFrame, 
 
     logs_df = create_load_log(file_df=files_df)
     logs_df.createOrReplaceTempView("logs")
-
-    airports_df.show(truncate=False)
 
     # extract columns to create songs table
     #  exclude immigration countries with no sas code -- none or very few records
@@ -129,7 +129,7 @@ def process_immigration_data(spark: SparkSession, df: DataFrame) -> (DataFrame, 
     return migration_df, files_df, logs_df
 
 
-def get_temperature_data_by_state(spark: SparkSession, format: str, path: str, start_year: int = 2000, shift_years: int = 4) -> DataFrame:
+def get_temperature_data(spark: SparkSession, format: str, path: str, start_year: int = 2000, shift_years: int = 4) -> DataFrame:
     df = spark.read.format(format) \
         .option("header", "True") \
         .option("inferSchema", "true") \
@@ -151,7 +151,7 @@ def get_temperature_data_by_state(spark: SparkSession, format: str, path: str, s
     return df
 
 
-def process_temperature_data_by_state(spark: SparkSession, df: DataFrame) -> (DataFrame, DataFrame, DataFrame):
+def process_temperature_data(spark: SparkSession, df: DataFrame) -> (DataFrame, DataFrame, DataFrame):
     df.createOrReplaceTempView("temperatures")
 
     files_df = create_files_log(df=df, table_name="temperature")
@@ -268,9 +268,9 @@ def load_raw_data():
 
     data_path = '../../data/rawdata'
 
-    temp_df = get_temperature_data_by_state(spark=spark,
-                                            format="csv",
-                                            path=f'{data_path}/temperatures/GlobalLandTemperaturesByState.csv')
+    temp_df = get_temperature_data(spark=spark,
+                                   format="csv",
+                                   path=f'{data_path}/temperatures/GlobalLandTemperaturesByState.csv')
 
     write_to_postgres(temp_df, "temperature_raw")
 

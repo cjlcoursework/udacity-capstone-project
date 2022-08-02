@@ -1,6 +1,5 @@
 from src.common.common import write_to_postgres
-from src.common.config import PYSPARK_EXTENDED_JARS
-from src.common.ingest_core_data import get_temperature_data_by_state, get_immigration_data, get_airport_data
+from src.common.ingest_core_data import get_temperature_data, get_immigration_data, get_airport_data
 
 
 def load_raw_data():
@@ -12,9 +11,9 @@ def load_raw_data():
 
     data_path = '../../data/rawdata'
 
-    temp_df = get_temperature_data_by_state(spark=spark,
-                                            format="csv",
-                                            path=f'{data_path}/temperatures/GlobalLandTemperaturesByState.csv')
+    temp_df = get_temperature_data(spark=spark,
+                                   format="csv",
+                                   path=f'{data_path}/temperatures/GlobalLandTemperaturesByState.csv')
 
     write_to_postgres(temp_df, "temperature_raw")
 

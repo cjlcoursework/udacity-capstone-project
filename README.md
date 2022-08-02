@@ -5,9 +5,9 @@
 
 #### Supporting documents
 
-* [terms](doc/terms.md)
+* documentation:  [terms](doc/terms.md)
 
-* [data dictionary](doc/data_dictionary.md)
+* documentation:  [data dictionary](doc/data_dictionary.md)
 
 ---
 

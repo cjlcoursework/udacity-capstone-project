@@ -141,7 +141,7 @@ An example of a query that can be input into a BI tool or notebook
 
 ```sql
 WITH country_temps as (select canon_country_name, year, month, avg(average_temp) as avg_temp
-                       from state_temperatures
+                       from temperatures
                        group by canon_country_name, year, month
 )
 select DISTINCT
@@ -155,7 +155,7 @@ select DISTINCT
              then 'to-cooler-temp'
          else 'to-warmer-temp'
         end as direction
-from immigration I -- 346627
+from immigration I 
          left join country_temps C1
                    on (I.arrival_country_name = C1.canon_country_name
                        and C1.year = I.arrival_year

@@ -1,5 +1,9 @@
 
-### Data Pipeline Capstone
+# Data Pipeline Capstone
+
+#### The documentation for this project is in the "documentation" links provided in each of the sections below.
+
+#### Supporting documents
 
 * [terms](doc/terms.md)
 
@@ -70,6 +74,7 @@
   - If the database needed to be accessed by 100+ people.
 
 
+* documentation:  [Write Up](doc/step5.write_up.md)
 
 
 

@@ -5,10 +5,11 @@
 
 #### Supporting documents
 
-* documentation:  [terms](doc/terms.md)
+* documentation:  [Terms](doc/terms.md)
 
-* documentation:  [data dictionary](doc/data_dictionary.md)
+* documentation:  [Data dictionary](doc/data_dictionary.md)
 
+* documentation: [Open to-do](doc/todo.py)
 ---
 
 
@@ -27,11 +28,11 @@
 
 
 * documentation:   
-  * [data exploration](doc/step2.explore.md)
+  * [Data exploration](doc/step2.explore.md)
   
-  * [immigration cleanup notes](doc/step2.labnotes1.md)
+  * [Immigration cleanup notes](doc/step2.labnotes1.md)
 
-  * [defect cleanup details](doc/step2.labnotes2.md)
+  * [Defect cleanup details](doc/step2.labnotes2.md)
 ---
 
 ### Step 3: Define the Data Model
@@ -39,7 +40,7 @@
 - List the steps necessary to pipeline the data into the chosen data model
 
 
-* documentation:   [definition of the data](doc/step3.define.md)
+* documentation:   [Definition of the data](doc/step3.define.md)
 
 ---
 
@@ -53,11 +54,11 @@
 
 
 * documentation:
-  - [architecture](doc/step4.architecture.md)
+  - [Architecture](doc/step4.architecture.md)
 
-  - [the data pipeline](doc/step4.pipeline.md)
+  - [The data pipeline](doc/step4.pipeline.md)
 
-  - [base query](doc/step4.proof-of-concept.md)
+  - [Base query](doc/step4.proof-of-concept.md)
 
 ---
 
@@ -74,7 +75,7 @@
   - If the database needed to be accessed by 100+ people.
 
 
-* documentation:  [Write Up](doc/step5.write_up.md)
+* documentation:  [Write up](doc/step5.write_up.md)
 
 
 

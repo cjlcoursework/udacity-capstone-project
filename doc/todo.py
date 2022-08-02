@@ -6,4 +6,7 @@
 # Todo - Add IAAS deployment scripts for the AWS infrastructure
 # Todo - is there any point in a REST or graphql service?
 # Todo - Output to Mongo or Snowflake?
-#
+# Todo - Add a unique key to the termeratures data so it can be de-duped
+# Todo - Add upsert logic so we do not append duplicate records
+# Todo - Add a listing of the files in this repo
+# Todo - add a few words on how this was or should be or will be run (e.g. the local run into ./datalake

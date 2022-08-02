@@ -78,6 +78,11 @@ Each job integrates the gold data along with a separate load_files control table
 This can be used to validate that all records from each input file were processed into the gold dataset
 
 
+### Open To Do's:
+
+
+
+
 ## Schemas
 
 ```sql

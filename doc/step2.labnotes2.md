@@ -38,7 +38,7 @@ WITH bad_airports as (
 select I.i94port, count(*) from immigration I join bad_airports B on B.i94port = I.i94port
 group by I.i94port ;
 
---------- in the immigration data, but not in temperatures data
+--------- in the immigration data, but not in temperature data
 NYC,485953
 HHW,142720
 CHI,130567
@@ -180,7 +180,7 @@ select  I.origin_country_name, S.canon_country_name from immigration_countries I
 ### After cleanup, Map immigrations to state temperatures
 
 ```sql
---- correlate immigration arrival.country to temperatures.canon_country_name
+--- correlate immigration arrival.country to temperature.canon_country_name
 select   count(*)
 from immigration I
     left join state_temperatures C on I.arrival_country_name = C.canon_country_name
@@ -188,7 +188,7 @@ where C.canon_country_name is null;
 --- perfect - no records found
 
 
---- correlate immigration arrival.country to temperatures.canon_country_name
+--- correlate immigration arrival.country to temperature.canon_country_name
 select   count(*)
 from immigration I
          left join state_temperatures C on I.origin_country_name = C.canon_country_name

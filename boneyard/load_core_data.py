@@ -1,11 +1,11 @@
-from src.common.common import write_to_postgres
-from src.common.config import PYSPARK_EXTENDED_JARS
+from boneyard.common import write_to_postgres
+from boneyard.config import PYSPARK_EXTENDED_JARS
 from src.common.get_raw_core_data import process_temperature_data, get_raw_temperature_data, \
     get_raw_immigration_data, process_airport_data, get_airport_data, process_immigration_data
 
 
 def load_processed_data_to_postgres():
-    data_path = '../data/source_data'
+    data_path = '../source_data'
 
     from pyspark.sql import SparkSession
 

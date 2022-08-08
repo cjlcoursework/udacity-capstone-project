@@ -1,5 +1,5 @@
-from src.common.common import write_to_postgres
-from src.common.config import PYSPARK_EXTENDED_JARS
+from boneyard.common import write_to_postgres
+from boneyard.config import PYSPARK_EXTENDED_JARS
 from src.common.get_raw_core_data import get_raw_temperature_data, get_raw_immigration_data, get_airport_data
 
 
@@ -11,7 +11,7 @@ def load_raw_data():
         .config("spark.sql.debug.maxToStringFields", 1000) \
         .getOrCreate()
 
-    data_path = '../data/source_data'
+    data_path = '../source_data'
 
     temp_df = get_raw_temperature_data(spark=spark,
                                        format_to_use="csv",

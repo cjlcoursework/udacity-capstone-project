@@ -5,7 +5,6 @@ from pyspark.sql.functions import *
 
 
 def create_files_log(df: DataFrame, table_name: str) -> DataFrame:
-    df.show(truncate=False)
     files_df = df.select("input_file").distinct() \
         .withColumn("dataset", lit(table_name)) \
         .withColumn("file_id", F.expr("uuid()")) \
@@ -26,16 +25,3 @@ def write_table_to_lake(df: DataFrame, folder: str, mode: str = "overwrite"):
     df.write \
         .mode("overwrite") \
         .parquet(sub_folder)
-
-
-# def write_stream_to_lake(df: DataFrame, folder_path: str, checkpoint_path: str):
-#     """write a stream to a file"""
-#     x = datetime.datetime.now()
-#     sub_folder = f"year={x.year}/month={x.month:02}/day={x.day:02}/hour={x.hour:02}"
-#
-#     df \
-#         .writeStream.trigger(once=True) \
-#         .option("path", folder_path + sub_folder) \
-#         .option("checkpointLocation", checkpoint_path) \
-#         .format('json') \
-#         .start()

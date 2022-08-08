@@ -4,10 +4,10 @@ from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
 from src.common.Configurations import *
-from src.common.common import write_to_postgres
+from boneyard.common import write_to_postgres
 
 # TODO - create a database of raw files and locations - because we are not saving in git
-from src.common.config import PYSPARK_EXTENDED_JARS
+from boneyard.config import PYSPARK_EXTENDED_JARS
 
 
 def get_control_data(spark: SparkSession, tag: str) -> DataFrame:
@@ -26,7 +26,7 @@ def write_control_to_lake(df: DataFrame, tag: str):
 
 
 def get_sas_countries(spark: SparkSession, raw: bool = False) -> DataFrame:
-    path = '../../data/source_data/controls/sas_countries.csv'
+    path = '../../source_data/controls/sas_countries.csv'
 
     df: DataFrame = spark.read \
         .option("header", "True") \
@@ -41,7 +41,7 @@ def get_sas_countries(spark: SparkSession, raw: bool = False) -> DataFrame:
 
 
 def get_raw_sas_index(spark: SparkSession) -> DataFrame:
-    path = '../../data/source_data/controls/sas_index_raw.csv'
+    path = '../../source_data/controls/sas_index_raw.csv'
 
     df: DataFrame = spark.read \
         .option("header", "True") \
@@ -52,7 +52,7 @@ def get_raw_sas_index(spark: SparkSession) -> DataFrame:
 
 
 def get_country_codes(spark: SparkSession) -> DataFrame:
-    path = '../../data/source_data/controls/country_codes.csv'
+    path = '../../source_data/controls/country_codes.csv'
 
     df: DataFrame = spark.read \
         .option("header", "True") \
@@ -92,7 +92,7 @@ def load_cities(spark: SparkSession, format: str, path: str, table_name: str):
 
 
 def get_airport_data(spark: SparkSession) -> DataFrame:
-    path = '../../data/source_data/controls/airport-codes.csv'
+    path = '../../source_data/controls/airport-codes.csv'
 
     return spark.read \
         .option("header", "True") \

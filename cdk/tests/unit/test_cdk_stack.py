@@ -5,7 +5,7 @@ from cdk.cdk_stack import CdkStack
 
 def test_sqs_queue_created():
     app = core.App()
-    stack = CdkStack(app, "cdk")
+    stack = CdkStack(app, "src")
     template = assertions.Template.from_stack(stack)
 
     template.has_resource_properties("AWS::SQS::Queue", {
@@ -15,7 +15,7 @@ def test_sqs_queue_created():
 
 def test_sns_topic_created():
     app = core.App()
-    stack = CdkStack(app, "cdk")
+    stack = CdkStack(app, "src")
     template = assertions.Template.from_stack(stack)
 
     template.resource_count_is("AWS::SNS::Topic", 1)

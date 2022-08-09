@@ -5,7 +5,7 @@
     Jar: command-runner.jar
     Args:
       - spark-submit
-      - '--deploy-mode'
+      - '--deployment-mode'
       - cluster
       - '--master'
       - yarn
@@ -18,7 +18,7 @@
     Jar: command-runner.jar
     Args:
       - spark-submit
-      - '--deploy-mode'
+      - '--deployment-mode'
       - cluster
       - '--master'
       - yarn
@@ -31,7 +31,7 @@
     Jar: command-runner.jar
     Args:
       - spark-submit
-      - '--deploy-mode'
+      - '--deployment-mode'
       - cluster
       - '--master'
       - yarn
@@ -48,7 +48,7 @@
     Jar: command-runner.jar
     Args:
       - spark-submit
-      - '--deploy-mode'
+      - '--deployment-mode'
       - cluster
       - '--master'
       - yarn

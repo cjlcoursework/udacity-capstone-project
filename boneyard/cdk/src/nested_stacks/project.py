@@ -104,7 +104,7 @@ class AirflowProjectStack(core.NestedStack):
                     version="0.2",
                     phases={
                         "pre_build": {"commands": ["aws --version"]},
-                        "build": {"commands": ["make deploy bucket-name=$BUCKET_NAME"]},
+                        "build": {"commands": ["make deployment bucket-name=$BUCKET_NAME"]},
                     },
                 )
             ),

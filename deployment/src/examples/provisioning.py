@@ -33,7 +33,7 @@ class AirflowProvisioningStack(core.NestedStack):
         super().__init__(scope, construct_id, **kwargs)
 
         code_path = os.path.realpath(
-            os.path.abspath(os.path.join(__file__, "..", "..", ".."))
+            os.path.abspath(os.path.join(__file__, "../cdk_python", "..", ".."))
         )
 
         AirflowProvisioningStack.zip_directory(code_path)
@@ -50,7 +50,7 @@ class AirflowProvisioningStack(core.NestedStack):
             os.path.abspath(
                 os.path.join(
                     __file__,
-                    "..",
+                    "../cdk_python",
                     "..",
                     "..",
                     "dist",

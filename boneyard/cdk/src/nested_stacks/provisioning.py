@@ -130,7 +130,7 @@ class AirflowProvisioningStack(core.NestedStack):
             )
         )
 
-        cdk_command = "src deploy"
+        cdk_command = "src deployment"
         if vpc_id:
             cdk_command += f" -c vpcId={vpc_id}"
         if cidr:

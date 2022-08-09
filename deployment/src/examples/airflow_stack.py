@@ -3,12 +3,11 @@
 # SPDX-License-Identifier: MIT-0
 #
 
+import json
 import os
 import zipfile
-import json
 
 from aws_cdk import (
-    NestedStack,
     aws_iam as iam,
     aws_s3 as s3,
     aws_s3_deployment as s3deploy,
@@ -232,8 +231,8 @@ class AirflowStack(Stack):
             ],
         )
 
-        plugins_zip = "./deployment/src/assets/plugins.zip"
-        plugins_path = "./deployment/src/assets/plugins"
+        plugins_zip = "./cdk_python/src/assets/plugins.zip"
+        plugins_path = "./cdk_python/src/assets/plugins"
         self._zip_dir(plugins_path, plugins_zip)
 
         # Upload MWAA pre-reqs
@@ -242,7 +241,7 @@ class AirflowStack(Stack):
             "DeployPlugin",
             sources=[
                 s3deploy.Source.asset(
-                    "./deployment/src/assets",
+                    "./cdk_python/src/assets",
                     exclude=["**", "!plugins.zip"],
                 )
             ],
@@ -255,7 +254,7 @@ class AirflowStack(Stack):
             "DeployReq",
             sources=[
                 s3deploy.Source.asset(
-                    "./deployment/src/assets", exclude=["**", "!requirements.txt"]
+                    "./cdk_python/src/assets", exclude=["**", "!requirements.txt"]
                 )
             ],
             destination_bucket=self.bucket,

@@ -15,7 +15,7 @@ from aws_cdk import (
 from constructs import Construct
 
 
-class MwaaCdkStackEnv(Stack):
+class AirflowMAAStack(Stack):
 
     def __init__(self, scope: Construct, id: str, vpc, mwaa_props, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
@@ -41,7 +41,7 @@ class MwaaCdkStackEnv(Stack):
             Tags.of(dags_bucket).add(tag, s3_tags[tag])
 
         s3deploy.BucketDeployment(self, "DeployDAG",
-                                  sources=[s3deploy.Source.asset("./deployment/src/dags")],
+                                  sources=[s3deploy.Source.asset("./cdk_python/src/dags")],
                                   destination_bucket=dags_bucket,
                                   destination_key_prefix="dags",
                                   prune=False,

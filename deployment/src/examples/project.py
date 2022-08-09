@@ -31,7 +31,7 @@ class AirflowProjectStack(core.NestedStack):
         self.package_name = "mwaaproject"
 
         code_path = os.path.realpath(
-            os.path.abspath(os.path.join(__file__, "..", "..", "project"))
+            os.path.abspath(os.path.join(__file__, "../cdk_python", "..", "project"))
         )
         AirflowProjectStack.zip_directory(code_path)
 

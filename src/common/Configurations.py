@@ -36,7 +36,7 @@ SAS_INDEX_TABLE = "/dev/sink/postgres/sas_index_table"
 AIRPORT_CODES_TABLE = "/dev/sink/postgres/airport_codes_table"
 
 
-class Configurations2:
+class Configurations:
 
     def __init__(self, params: dict = None):
 
@@ -80,7 +80,7 @@ class Configurations2:
             return None
 
 
-def display_value(config: Configurations2, name: str):
+def display_value(config: Configurations, name: str):
     value = config.get_value(name)
     print(f"{name}\t== {value}")
 
@@ -105,7 +105,7 @@ if __name__ == "__main__":
         '/udacity/emr/public-subnet/2': 'subnet-06d45ff339723d127'
     }
 
-    config = Configurations2(params=parameter_store)
+    config = Configurations(params=parameter_store)
 
     display_value(config, RAW_ROOT_TAG)
     display_value(config, APPLICATION_ROOT_TAG)

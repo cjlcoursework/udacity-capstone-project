@@ -1,5 +1,6 @@
 import os
 
+
 from src.common.Configurations import *
 from src.pyspark_applications.common import create_files_log, create_load_log, write_table_to_lake
 

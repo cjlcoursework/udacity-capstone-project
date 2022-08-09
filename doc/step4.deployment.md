@@ -2,14 +2,8 @@
 
 
 
-## CDK references and starter code
-1. `AWS samples`:  https://github.com/aws-samples/cdk-amazon-mwaa-cicd.git
-2. `Ricardo Sueiras`: https://github.com/094459/blogpost-cdk-mwaa.git
-
----
-
 ### DAG creation
-- Create EMR instance in EMR VPC
+- Create EMR instances in EMR VPC
 - Add steps to ingest and process immigration and temperature raw data into the processed bucket
 - Tear down
 

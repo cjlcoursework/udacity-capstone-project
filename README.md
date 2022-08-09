@@ -5,11 +5,14 @@
 
 #### Supporting documents
 
+* documentation: [Contents of this repo](doc/step1.capstone-repo.md)
+
 * documentation:  [Terms](doc/terms.md)
 
-* documentation:  [Data dictionary](doc/data_dictionary.md)
+* documentation: [Resources and Credits](doc/resources.md)
 
 * documentation: [Open to-do](doc/todo.py)
+
 ---
 
 
@@ -42,6 +45,8 @@
 
 * documentation:   [Definition of the data](doc/step3.define.md)
 
+* documentation:  [Data dictionary](doc/data_dictionary.md)
+
 ---
 
 ### Step 4: Run ETL to Model the Data
@@ -55,6 +60,8 @@
 
 * documentation:
   - [Architecture](doc/step4.architecture.md)
+
+  - [Deployment](doc/step4.deployment.md)
 
   - [The data pipeline](doc/step4.pipeline.md)
 

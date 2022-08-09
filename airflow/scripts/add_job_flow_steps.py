@@ -2,6 +2,7 @@
 
 # Purpose: Submit a variable number of Steps defined in a separate JSON file
 # Author:  Gary A. Stafford (November 2020)
+# todo - review and test add-job flow funtionality
 
 import argparse
 import json

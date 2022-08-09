@@ -2,6 +2,7 @@
 
 # Purpose: Create input files for both state machines using Jinja2
 # Author:  Gary A. Stafford (November 2020)
+# todo - review and test add-job flow funtionality
 
 import logging
 import os

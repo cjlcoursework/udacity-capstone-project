@@ -3,6 +3,7 @@
 # Purpose: Create a new EMR cluster and submits a variable
 #          number of Steps defined in a separate JSON file
 # Author:  Gary A. Stafford (November 2020)
+# todo - review - this is a different version with an internal payload rather than a json file
 
 import argparse
 import json

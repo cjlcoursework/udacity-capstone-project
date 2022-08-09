@@ -1,3 +1,4 @@
+# todo - review - this is a abstracted version with an external payload - frmo job-flow-overrides, and emr-steps
 import json
 import os
 from datetime import timedelta
@@ -12,7 +13,7 @@ from airflow.providers.amazon.aws.operators.emr_create_job_flow import (
     EmrCreateJobFlowOperator,
 )
 from airflow.providers.amazon.aws.sensors.emr_step import EmrStepSensor
-from airflow.utils.dates import days_ago
+
 
 # ************** AIRFLOW VARIABLES **************
 bootstrap_bucket = Variable.get("bootstrap_bucket")
@@ -62,7 +63,7 @@ with DAG(
     cluster_creator = EmrCreateJobFlowOperator(
         task_id="create_job_flow",
         job_flow_overrides=get_object(
-            "job_flow_overrides/job_flow_overrides.json", work_bucket
+            "job_flow_overrides/job_flow_overrides.yaml", work_bucket
         ),
     )
 
@@ -70,7 +71,7 @@ with DAG(
         task_id="add_steps",
         job_flow_id="{{ task_instance.xcom_pull(task_ids='create_job_flow', key='return_value') }}",
         aws_conn_id="aws_default",
-        steps=get_object("emr_steps/emr_steps.json", work_bucket),
+        steps=get_object("emr_steps/emr_steps.yaml", work_bucket),
     )
 
     step_checker = EmrStepSensor(

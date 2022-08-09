@@ -1,4 +1,0 @@
-cicid,i94yr,i94mon,i94cit,i94res,arrdate,i94mode,i94addr,depdate,i94bir,i94visa,count,dtadfile,visapost,occup,entdepa,entdepd,entdepu,matflag,biryear,dtaddto,gender,insnum,airline,admnum,fltno,visatype
-5571120.0,2016.0,4.0,577.0,577.0,20573.0,1.0,FL,20588.0,28.0,2.0,1.0,20160429,GTM,,G,I,,M,1988.0,10282016,M,,*GA,9.491034683E10,N290G,B2
-5571121.0,2016.0,4.0,577.0,577.0,20573.0,1.0,FL,20576.0,51.0,2.0,1.0,20160429,GTM,,G,R,,M,1965.0,10282016,M,,*GA,9.490993153E10,N290G,B2
-5571122.0,2016.0,4.0,577.0,577.0,20573.0,1.0,FL,20576.0,22.0,2.0,1.0,20160429,GTM,,G,R,,M,1994.0,10282016,F,,*GA,9.490968863E10,N290G,B2

@@ -2,7 +2,7 @@
 select 'airport_codes' as table_name, count(*) from airport_codes union all
 select 'immigrations', count(*) from immigrations union all
 select 'us_cities', count(*) from us_cities union all
-select 'temperatures', count(*) from temperatures
+select 'temperature', count(*) from temperatures
 ;
 ----------
 -- common-data
@@ -29,7 +29,7 @@ select country_name, state_name, min(year), max(year), count(*) from state_tempe
 --     month (4)
 --     year (2016)
 
--- temperatures (provides average temperature along the following pivots):
+-- temperature (provides average temperature along the following pivots):
 --    city (Arhus)
 --    country (Denmark)
 --    month (4)

@@ -2,7 +2,7 @@
 Step 5: Complete Project Write Up
 ### Clearly state the rationale for the choice of tools and technologies for the project.
 
-> The i94immigration data is not really a closed data set where the data is controlled.
+> The i94immigration data is not really a closed data set where the data is controlled.  By "closed", I mean that there is no control to guarantee that a inner join of the immigration and temperature data will correlate, and it does not have a specific and focused objective. 
 > 
 > It is more approprite to a research or analytical dataset
 >
@@ -16,11 +16,13 @@ Step 5: Complete Project Write Up
 
 
 ### Propose how often the data should be updated and why.
-> This sort of data could get away with being monthly.
+> I am thinking that our Airflow cron would look for new files **DAILY**
 > 
-> It is not streaming data and the providers would not update this kind of data daily
+> This sort of data could really probably get away with being monthly.
 > 
-> but I am thinking that our Airflow cron would look for new files **DAILY**
+> The providers would not update this kind of data daily anyway and there's no real date column in the immigrations data that goes beyond year/month, but for this project 
+> 
+
 
 <br/>
 
@@ -29,14 +31,14 @@ Step 5: Complete Project Write Up
 * The data was increased by 100x.
 > I would not change anything except the cluster size
 > 
-> This solution is already designed as a "big date" solution
+> This solution is already designed as a "big data" solution
 
 <br/>
 
 * The data populates a dashboard that must be updated on a daily basis by 7am every day.
 > I would schedule the job at end of day or early in the morning
 > 
-> I would size the cluster appropriatly to get done in a reasonable window
+> I would size the cluster appropriately to get done in a reasonable window
 > 
 > I would add some sort of meta-data were the users can see how current the data is  ( I have not done this)
 

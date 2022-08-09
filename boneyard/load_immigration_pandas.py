@@ -7,7 +7,7 @@ engine = create_engine('postgresql://postgres:chinois1@localhost:5432/postgres')
 
 
 def load_padas_parquet():
-    df = pd.read_parquet("../data/rawdata/udacity/sas_data", engine='auto', columns=None, storage_options=None, use_nullable_dtypes=False)
+    df = pd.read_parquet("../source_data/udacity/sas_data", engine='auto', columns=None, storage_options=None, use_nullable_dtypes=False)
     df.to_sql(name='pandas_immigration', schema="public", con=engine,  if_exists='replace')
 
 

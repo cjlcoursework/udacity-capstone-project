@@ -1,8 +1,7 @@
 import os
 
 from src.common.Configurations import *
-from src.common.transform_core_data import process_temperature_data
-from src.stage.common import create_files_log, create_load_log, write_table_to_lake
+from src.pyspark_applications.common import create_files_log, create_load_log, write_table_to_lake
 
 try:
     from pyspark import SparkConf

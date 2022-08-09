@@ -9,9 +9,9 @@ from aws_cdk import (
 )
 from constructs import Construct
 
-from cdk.src.airflow_stack import AirflowStack
+from boneyard.cdk.src.airflow_stack import AirflowStack
 from .nested_stacks.project import AirflowProjectStack
-from cdk.src.airflow_vpc import VpcStack
+from boneyard.cdk.src.airflow_vpc import VpcStack
 from .nested_stacks.provisioning import AirflowProvisioningStack
 
 

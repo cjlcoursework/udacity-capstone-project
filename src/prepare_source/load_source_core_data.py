@@ -2,7 +2,7 @@ from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql import functions as F
 from pyspark.sql.types import IntegerType
 
-from src.common.Configurations import *
+from src.common.prep_configs import *
 
 
 def get_raw_immigration_data(spark: SparkSession, format_to_use: str, path: str) -> DataFrame:
@@ -51,11 +51,11 @@ def write_immigrations_to_partitioned(df: DataFrame):
     df.write.partitionBy("year", "month", "i94port") \
         .mode("overwrite") \
         .option("header", "True") \
-        .csv(Configurations().get_value(IMMIGRATION_INPUT_DATA_TAG))
+        .csv(PreparationConfigs().get_value(IMMIGRATION_INPUT_DATA_TAG))
 
 
 def write_current_temperatures_to_partitioned(df: DataFrame):
-    path = Configurations().get_value(TEMPERATURE_INPUT_DATA_TAG)
+    path = PreparationConfigs().get_value(TEMPERATURE_INPUT_DATA_TAG)
 
     df.filter("year > 2000") \
         .withColumn("year", df.year + 4) \
@@ -75,14 +75,14 @@ def load_core_data():
     # --- temperature ----
     temp_df = get_raw_temperature_data(spark=spark,
                                        format_to_use="csv",
-                                       path=f'{Configurations().get_value(SOURCE_ROOT_TAG)}/temperature/GlobalLandTemperaturesByState.csv')
+                                       path=f'{PreparationConfigs().get_value(SOURCE_ROOT_TAG)}/temperature/GlobalLandTemperaturesByState.csv')
 
     write_current_temperatures_to_partitioned(temp_df)
 
     # --- immigration ----
     immigration_df = get_raw_immigration_data(spark=spark,
                                               format_to_use="parquet",
-                                              path=f'{Configurations().get_value(SOURCE_ROOT_TAG)}/udacity/sas_data')
+                                              path=f'{PreparationConfigs().get_value(SOURCE_ROOT_TAG)}/udacity/sas_data')
 
     write_immigrations_to_partitioned(immigration_df)
 

@@ -1,7 +1,7 @@
 import os
 
 
-from src.common.Configurations import *
+from src.common.prep_configs import *
 from src.pyspark_applications.common import create_files_log, create_load_log, write_table_to_lake
 
 try:
@@ -13,7 +13,7 @@ except ImportError as e:
 
 def process_temperature_data(spark: SparkSession):
 
-    path = Configurations().get_value(TEMPERATURE_INPUT_DATA_TAG)
+    path = PreparationConfigs().get_value(TEMPERATURE_INPUT_DATA_TAG)
     df = spark.read \
         .option("inferSchema", "true") \
         .option("header", "true") \
@@ -46,15 +46,15 @@ def process_temperature_data(spark: SparkSession):
      """)
 
     write_table_to_lake(df=temps_df,
-                        folder=Configurations().get_value(TEMPERATURE_LAKE_DATA_TAG),
+                        folder=PreparationConfigs().get_value(TEMPERATURE_LAKE_DATA_TAG),
                         mode="append")
 
     write_table_to_lake(df=files_df,
-                        folder=Configurations().get_value(TEMPERATURE_LAKE_FILES_TAG),
+                        folder=PreparationConfigs().get_value(TEMPERATURE_LAKE_FILES_TAG),
                         mode="append")
 
     write_table_to_lake(df=logs_df,
-                        folder=Configurations().get_value(TEMPERATURE_LAKE_LOADS_TAG), mode="append")
+                        folder=PreparationConfigs().get_value(TEMPERATURE_LAKE_LOADS_TAG), mode="append")
 
 
 def ingest_temperature_data():

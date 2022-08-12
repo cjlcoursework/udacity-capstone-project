@@ -1,7 +1,6 @@
 # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 # SPDX-License-Identifier: MIT-0
 from aws_cdk import (
-    aws_iam as iam,
     aws_ec2 as ec2,
     Stack,
     CfnOutput
@@ -11,8 +10,8 @@ from constructs import Construct
 
 class AirflowMaaVPCStack(Stack):
 
-    def __init__(self, scope: Construct, id: str, mwaa_props, **kwargs) -> None:
-        super().__init__(scope, id, **kwargs)
+    def __init__(self, scope: Construct, id: str, env, mwaa_props, **kwargs) -> None:
+        super().__init__(scope, id, env=env, **kwargs)
    
         # Create VPC network
         self.vpc = ec2.Vpc(

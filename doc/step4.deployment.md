@@ -40,26 +40,6 @@
 2. login to Aiflow and trigger the dags  
 
 
-### CDK deployment
-- [x] create the EMR VPC
-
-
-- [x] create data buckets and upload code
-  - `raw-bucket` -- holding the curated input data for immigrations and temperatures
-  - `processed-bucket` -- destination for final processed data
-  - `application-data` -- pyspark application files 
-  - upload pyspark_applications to the `application-data` bucket
-
-
-- [x] create a separate `airflow-bucket` for airflow dags
-  - upload dags to the airflow bucket
-
-
-- [x] create a separate `VPC` for Airflow
-
-
-- [x] create an `AWS managed Airflow` instance in the airflow VPC
-
 ---
 
 ### Scripts

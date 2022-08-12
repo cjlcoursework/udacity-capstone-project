@@ -1,16 +1,7 @@
-from typing import Any
-
 from aws_cdk import (
-    Duration,
     Stack,
     aws_ec2 as ec2,
-    aws_s3 as s3,
-    aws_iam as iam,
-    aws_sqs as sqs,
-    aws_sns as sns,
-    aws_ssm as ssm,
-    aws_s3_deployment as s3_deploy,
-    aws_sns_subscriptions as subs, RemovalPolicy,
+    aws_ssm as ssm, Environment,
 )
 from constructs import Construct
 
@@ -19,10 +10,8 @@ APP = "udacity"
 
 class EMRVpcStack(Stack):
 
-    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
-        super().__init__(scope, construct_id, **kwargs)
-
-        env_name = self.node.try_get_context("env")
+    def __init__(self, scope: Construct, construct_id: str, env: Environment, mwaa_props: dict, **kwargs) -> None:
+        super().__init__(scope, construct_id, env=env, **kwargs)
 
         self.vpc = ec2.Vpc(self, 'emr-vpc',
                            cidr='192.168.50.0/24',
@@ -42,16 +31,17 @@ class EMRVpcStack(Stack):
 
         ssm.StringParameter(self, APP,
                             string_value=self.vpc.vpc_id,
-                            parameter_name=f'/{APP}/dev/emr/vpcId'
+                            parameter_name=f'/{APP}/dev/emr_vpcId'
                             )
 
         public_subnets = [subnet.subnet_id for subnet in self.vpc.public_subnets]
         count = 1
+        label = "emr_subnet_id"
         for psub in public_subnets:
+            if count > 1:
+                label = f"emr_subnet_id/{str(count)}"
             ssm.StringParameter(self, 'public-subnet-' + str(count),
                                 string_value=psub,
-                                parameter_name=f'/{APP}/emr/public-subnet/{str(count)}'
+                                parameter_name=f'/{APP}/dev/{label}'
                                 )
             count += 1
-
-

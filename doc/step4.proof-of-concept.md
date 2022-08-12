@@ -140,32 +140,36 @@ A typical BI tool like Tableau would expose this data as a set of atrributes and
 An example of a query that can be input into a BI tool or notebook 
 
 ```sql
-WITH country_temps as (select canon_country_name, year, month, avg(average_temp) as avg_temp
-                       from temperatures
-                       group by canon_country_name, year, month
+WITH country_temps as (
+  select canon_country_name,
+         year,
+         month,
+         avg(average_temp) as avg_temp
+  from temperature
+  group by canon_country_name,
+           year,
+           month
 )
-select DISTINCT
-    I.arrival_year as year,
-    I.arrival_month as month,
-    I.origin_country_name,
-    C2.avg_temp as origin_temp,
-    I.arrival_country_name,
-    C1.avg_temp as arrival_temp,
-    case when C2.avg_temp > C1.avg_temp
-             then 'to-cooler-temp'
-         else 'to-warmer-temp'
-        end as direction
-from immigration I 
-         left join country_temps C1
-                   on (I.arrival_country_name = C1.canon_country_name
-                       and C1.year = I.arrival_year
-                       and C1.month = I.arrival_month
-                       )
-         left join country_temps C2 on (I.origin_country_name = C2.canon_country_name
-    and C2.year = I.arrival_year
-    and C2.month = I.arrival_month
-    )
-;
+select DISTINCT I.year as year,
+                I.month as month,
+                I.origin_country_name,
+                C2.avg_temp as origin_temp,
+                I.arrival_country_name,
+                C1.avg_temp as arrival_temp,
+                case
+                  when C2.avg_temp > C1.avg_temp then 'to-cooler-temp' else 'to-warmer-temp'
+                  end as direction
+from immigration I
+       left join country_temps C1 on (
+      I.arrival_country_name = C1.canon_country_name
+    and C1.year = I.year
+    and C1.month = I.month
+  )
+       left join country_temps C2 on (
+      I.origin_country_name = C2.canon_country_name
+    and C2.year = I.year
+    and C2.month = I.month
+  );
 ```
 
 | year | month  | origin\_country\_name | origin\_temperature   | arrival\_country\_name | arrival\_temperature     | direction         |

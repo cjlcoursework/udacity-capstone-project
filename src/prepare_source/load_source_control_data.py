@@ -3,7 +3,7 @@ from pyspark.sql import functions as F
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
-from src.common.Configurations import *
+from src.common.prep_configs import *
 from boneyard.common import write_to_postgres
 
 # TODO - create a database of raw files and locations - because we are not saving in git
@@ -11,7 +11,7 @@ from boneyard.config import PYSPARK_EXTENDED_JARS
 
 
 def get_control_data(spark: SparkSession, tag: str) -> DataFrame:
-    path = Configurations().get_value(tag)
+    path = PreparationConfigs().get_value(tag)
     return spark.read \
         .option("header", "true") \
         .option("delimiter", ",") \
@@ -19,7 +19,7 @@ def get_control_data(spark: SparkSession, tag: str) -> DataFrame:
 
 
 def write_control_to_lake(df: DataFrame, tag: str):
-    path = Configurations().get_value(tag)
+    path = PreparationConfigs().get_value(tag)
     df.write \
         .mode("overwrite") \
         .parquet(path)
@@ -170,10 +170,10 @@ def process_airport_data(spark: SparkSession, df: DataFrame) -> DataFrame:
 
 
 def publish_controls_to_portgres(spark: SparkSession):
-    write_to_postgres(get_sas_countries(spark), table_name=Configurations().get_value(SAS_COUNTRIES_TABLE))
-    write_to_postgres(get_country_codes(spark), table_name=Configurations().get_value(COUNTRY_CODES_TABLE))
+    write_to_postgres(get_sas_countries(spark), table_name=PreparationConfigs().get_value(SAS_COUNTRIES_TABLE))
+    write_to_postgres(get_country_codes(spark), table_name=PreparationConfigs().get_value(COUNTRY_CODES_TABLE))
     write_to_postgres(process_airport_data(spark=spark, df=get_airport_data(spark)),
-                      table_name= Configurations().get_value(AIRPORT_CODES_TABLE))
+                      table_name= PreparationConfigs().get_value(AIRPORT_CODES_TABLE))
 
 
 def publish_controls_to_parquet(spark: SparkSession):

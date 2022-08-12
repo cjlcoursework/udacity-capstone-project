@@ -1,4 +1,4 @@
-from src.common.Configurations import *
+from src.common.prep_configs import *
 from src.pyspark_applications.common import create_files_log, create_load_log, write_table_to_lake
 
 try:
@@ -9,7 +9,7 @@ except ImportError as e:
 
 
 def get_control_data(spark: SparkSession, tag: str) -> DataFrame:
-    path = Configurations().get_value(tag)
+    path = PreparationConfigs().get_value(tag)
     return spark.read \
         .option("header", "true") \
         .option("delimiter", ",") \
@@ -17,7 +17,7 @@ def get_control_data(spark: SparkSession, tag: str) -> DataFrame:
 
 
 def process_immigration_data(spark: SparkSession) -> (DataFrame, DataFrame, DataFrame):
-    path = Configurations().get_value(IMMIGRATION_INPUT_DATA_TAG)
+    path = PreparationConfigs().get_value(IMMIGRATION_INPUT_DATA_TAG)
     df = spark.read \
         .option("inferSchema", "true") \
         .option("header", "true") \
@@ -90,15 +90,15 @@ def process_immigration_data(spark: SparkSession) -> (DataFrame, DataFrame, Data
     WHERE rownumber = 1 """)
 
     write_table_to_lake(df=migration_df,
-                        folder=Configurations().get_value(IMMIGRATION_LAKE_DATA_TAG),
+                        folder=PreparationConfigs().get_value(IMMIGRATION_LAKE_DATA_TAG),
                         mode="append")
 
     write_table_to_lake(df=files_df,
-                        folder=Configurations().get_value(IMMIGRATION_LAKE_FILES_TAG),
+                        folder=PreparationConfigs().get_value(IMMIGRATION_LAKE_FILES_TAG),
                         mode="append")
 
     write_table_to_lake(df=logs_df,
-                        folder=Configurations().get_value(IMMIGRATION_LAKE_LOADS_TAG), mode="append")
+                        folder=PreparationConfigs().get_value(IMMIGRATION_LAKE_LOADS_TAG), mode="append")
 
 
 def ingest_migration_data():

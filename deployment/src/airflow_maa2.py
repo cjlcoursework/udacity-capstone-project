@@ -6,17 +6,19 @@ from aws_cdk import (
     aws_ec2 as ec2,
     aws_s3 as s3,
     aws_s3_deployment as s3deploy,
-    aws_mwaa as mwaa,
     aws_ssm as ssm,
+    aws_mwaa as mwaa,
     aws_kms as kms,
     Stack,
     CfnOutput,
-    Tags, RemovalPolicy
+    RemovalPolicy,
+    Tags
 )
+
 from constructs import Construct
 
 
-class AirflowMAAStack(Stack):
+class AirflowMAAStack2(Stack):
     # todo - move labels to a commons module
     config_labels = {
         "release_label",
@@ -60,12 +62,22 @@ class AirflowMAAStack(Stack):
 
         key_suffix = 'Key'
 
+        # Create MWAA S3 Bucket and upload local dags
+
         s3_tags = {
             'env': f"{mwaa_props['mwaa_env']}",
             'service': 'MWAA Apache AirFlow'
         }
 
-        airflow_dags_path = self.create_bucket(
+        # dags_bucket = s3.Bucket(
+        #     self,
+        #     "mwaa-dags",
+        #     bucket_name=f"{mwaa_props['airflow-dags'].lower()}",
+        #     versioned=True,
+        #     block_public_access=s3.BlockPublicAccess.BLOCK_ALL or None
+        # )
+
+        dags_bucket = self.create_bucket(
             bucket_name=mwaa_props['airflow-dags'],
             label_name=self.get_ssm_label_name(
                 label_name="airflow_dags_path",
@@ -74,45 +86,17 @@ class AirflowMAAStack(Stack):
         )
 
         for tag in s3_tags:
-            Tags.of(airflow_dags_path).add(tag, s3_tags[tag])
+            Tags.of(dags_bucket).add(tag, s3_tags[tag])
 
-    # todo remove hard-coded path reference
         s3deploy.BucketDeployment(self, "DeployDAG",
-                                  sources=[s3deploy.Source.asset(
-                                      "/Users/christopherlomeli/Source/courses/udacity/data-engineer/udacity-capstone-project/airflow/dags")],
-                                  destination_bucket=airflow_dags_path,
+                                  sources=[s3deploy.Source.asset("/Users/christopherlomeli/Source/courses/udacity/data-engineer/udacity-capstone-project/airflow/dags")],
+                                  destination_bucket=dags_bucket,
                                   destination_key_prefix="dags",
                                   prune=False,
                                   retain_on_delete=False
                                   )
 
-        dags_bucket_arn = airflow_dags_path.bucket_arn
-
-        # Create MWAA IAM Policies and Roles, copied from MWAA documentation site
-        # After destroy remove cloudwatch log groups, S3 bucket and verify KMS key is removed.
-        # iam.PolicyStatement(
-        #     actions=[
-        #         "elasticmapreduce:DescribeStep",
-        #         "elasticmapreduce:AddJobFlowSteps",
-        #         "elasticmapreduce:RunJobFlow",
-        #         "s3:GetObject"
-        #     ],
-        #     effect=iam.Effect.ALLOW,
-        #     resources=["*"],
-        # ),
-        # iam.PolicyStatement(
-        #     actions=[
-        #         "iam:PassRole"
-        #     ],
-        #     effect=iam.Effect.ALLOW,
-        #     resources=[
-        #         f"arn:aws:iam:{self.account}:role/EMR_DefaultRole"
-        #         f"arn:aws:iam:{self.account}:role/EMR_EC2_DefaultRole",
-        #         emr_roles.emr_demo_role.role_arn,
-        #         emr_roles.emr_ec2_demo_role.role_arn
-        #     ],
-        # ),
-
+        dags_bucket_arn = dags_bucket.bucket_arn
 
         # Create MWAA IAM Policies and Roles, copied from MWAA documentation site
         # After destroy remove cloudwatch log groups, S3 bucket and verify KMS key is removed.

@@ -4,9 +4,11 @@
 ![](doc/deployment.png)
 
 ---
----
 
 ## Summary
+
+> Github
+> https://github.com/cjlcoursework/udacity-capstone-project.git
 
 ### The project
 - This document is a table of contents - the actual documentation is provided in the links below

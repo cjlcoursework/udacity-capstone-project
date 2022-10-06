@@ -10,7 +10,9 @@ This is a capstone project for a data engineering nanodegree.  The purpose of th
 
 The outcome is that wihtout more data gathering the data can only be correlated over certain US destinations and joined at the country level as opposed to city and state, but within that scope the data can be "joined".  That is not to say that there is a real correlation between immigration and climate, only that the data sets can be joined and reported.
 
-This page provides a template of the points we need to cover -- the actual documentation is in the LINKS below in each section.
+#### This page provides a template of the points we need to cover -- the actual documentation is in the LINKS below in each section.
+
+
 
 > Github
 > https://github.com/cjlcoursework/udacity-capstone-project.git

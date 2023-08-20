@@ -8,7 +8,7 @@
 ## Summary
 This is a capstone project for a data engineering nanodegree.  The purpose of this capstone is to correlate and integrate US immigration data and global temperature data.  
 
-The outcome is that we can at least join US destinations to other 'source' countries and have both source and destination temperatures.   But this is a limited set of joinable data, and once we've made tose joins, there is no obvious correlation in the data we have. 
+The outcome is that we can at least join US destinations to other 'source' countries and have both source and destination temperatures.   But this is a limited set of joinable data, and once we've made tose joins, there is no obvious correlation in the data we have.   We can't say definitively that temperature was the motiviating factor travel between the US and other countries.   We woud need more or different data to proceed further.
 
 Sepcificaly:
 1. the data can only be correlated over certain US destinations and joined at the country level as opposed to city and state level

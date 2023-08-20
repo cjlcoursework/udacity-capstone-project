@@ -14,6 +14,7 @@ The outcome is that:
 3. That is not to say that there is a real causal relationship or even correlation between immigration and climate, only that the data sets can be joined and reported.
 4. We would need to gather more data to establish any real relationship
 
+---
 
 > This page provides a template of the points we need to cover to complete the capstone -- the links in each section below contain the actual documentation.
 
